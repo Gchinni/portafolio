@@ -27,6 +27,7 @@ export const dictionaries = {
         "Guillermo Chinni - Full-Stack Developer especializado en React, Next.js, Node.js y arquitecturas Cloud.",
       ctaProjects: "Ver Proyectos",
       ctaCv: "Descargar CV",
+      cvLink: "/cv/CV_Guillermo_Chinni_espanol.pdf",
     },
     about: {
       title: "Sobre mí",
@@ -128,6 +129,17 @@ export const dictionaries = {
       connectText: "¿Construimos algo increíble? Hablemos.",
       copyright: `© ${new Date().getFullYear()} Guillermo Chinni. Todos los derechos reservados.`,
     },
+    contact: {
+      title: "Ponte en contacto",
+      name: "Nombre completo",
+      email: "Correo electrónico",
+      message: "Tu mensaje",
+      submit: "Enviar mensaje",
+      submitting: "Enviando...",
+      success: "¡Mensaje enviado con éxito! Te responderé pronto.",
+      error: "Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.",
+      captchaError: "Por favor, completa el Captcha.",
+    },
   },
   en: {
     nav: {
@@ -142,6 +154,7 @@ export const dictionaries = {
         "Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js, and Cloud architectures.",
       ctaProjects: "View Projects",
       ctaCv: "Download CV",
+      cvLink: "/cv/CV_Guillermo_Chinni_english.pdf",
     },
     about: {
       title: "About Me",
@@ -165,7 +178,7 @@ export const dictionaries = {
       badges: {
         nda: "Private Code (NDA)",
         team: "Team",
-        solo: "Solo",
+        solo: "Alone",
       },
       links: {
         web: "Visit Website",
@@ -241,6 +254,17 @@ export const dictionaries = {
     footer: {
       connectText: "Let’s build something amazing together.",
       copyright: `© ${new Date().getFullYear()} Guillermo Chinni. All rights reserved.`,
+    },
+    contact: {
+      title: "Get in touch",
+      name: "Full Name",
+      email: "Email Address",
+      message: "Your Message",
+      submit: "Send Message",
+      submitting: "Sending...",
+      success: "Message sent safely! I'll get back to you soon.",
+      error: "An error occurred while sending the message. Please try again.",
+      captchaError: "Please complete the Captcha.",
     },
   },
 };

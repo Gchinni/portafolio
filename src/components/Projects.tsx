@@ -51,7 +51,7 @@ function ImageCarousel({
           className="flex transition-transform duration-500 ease-in-out h-full"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {images.map((src, idx) => (
-            <div key={idx} className="relative w-full h-full flex-shrink-0">
+            <div key={idx} className="relative w-full h-full shrink-0">
               <Image
                 src={src}
                 alt={`${alt} screenshot ${idx + 1}`}
@@ -103,7 +103,7 @@ export function Projects() {
       id="projects"
       className="py-24 bg-gray-900 border-t border-gray-800">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3 mb-16">
+        <div className="flex items-center gap-3 mb-12">
           <div className="p-3 bg-brand-purple/10 rounded-lg">
             <Briefcase className="h-6 w-6 text-brand-purple" />
           </div>
@@ -112,7 +112,7 @@ export function Projects() {
           </h2>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {t.projects.items.map((project: ProjectItem) => (
             <div
               key={project.id}
@@ -125,9 +125,9 @@ export function Projects() {
                 />
               )}
 
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold text-white group-hover:text-brand-purple-hover transition-colors">
+              <div className="p-5 flex-1 flex flex-col">
+                <div className="flex justify-between items-start mb-3 gap-2">
+                  <h3 className="text-lg font-bold text-white group-hover:text-brand-purple-hover transition-colors leading-tight">
                     {project.name}
                   </h3>
                   {/* Team / Solo Badge */}
@@ -149,27 +149,27 @@ export function Projects() {
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="inline-flex items-center rounded-md bg-brand-purple/10 px-2.5 py-1 text-xs font-semibold text-brand-purple ring-1 ring-inset ring-brand-purple/30">
+                      className="inline-flex items-center rounded-md bg-brand-purple/10 px-2.5 py-1 text-[11px] font-semibold text-brand-purple ring-1 ring-inset ring-brand-purple/30">
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <p className="text-gray-400 text-sm leading-relaxed flex-1 mb-8">
+                <p className="text-gray-400 text-sm leading-relaxed flex-1 mb-6">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-3 mt-auto pt-5 border-t border-gray-800/80">
+                <div className="flex flex-wrap items-center gap-2 mt-auto pt-4 border-t border-gray-800/80">
                   {project.isPrivate ? (
                     <>
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-gray-900 border border-gray-800 text-gray-500 text-sm font-medium cursor-not-allowed select-none">
-                        <Lock className="w-4 h-4 text-gray-600" />
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-gray-900 border border-gray-800 text-gray-500 text-xs font-medium cursor-not-allowed select-none w-full sm:w-auto justify-center">
+                        <Lock className="w-3.5 h-3.5 text-gray-600" />
                         {t.projects.badges.nda}
                       </div>
                       <a
                         href={`mailto:guillechinni2001@gmail.com?subject=${encodeURIComponent(project.requestAccessSubject || "")}`}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-700 hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/10 text-gray-300 text-sm font-medium transition-colors">
-                        <Mail className="w-4 h-4" />
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-700 hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/10 text-gray-300 text-xs font-medium transition-colors w-full sm:w-auto justify-center">
+                        <Mail className="w-3.5 h-3.5" />
                         {t.projects.links.requestAccess}
                       </a>
                     </>
@@ -178,7 +178,7 @@ export function Projects() {
                       href={project.webLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-brand-purple hover:bg-brand-purple-hover text-white text-sm font-medium transition-colors">
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-brand-purple hover:bg-brand-purple-hover text-white text-xs font-medium transition-colors w-full sm:w-auto justify-center">
                       <ExternalLink className="w-4 h-4" />
                       {t.projects.links.web}
                     </a>
