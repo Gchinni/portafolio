@@ -8,10 +8,9 @@ export type ProjectItem = {
   images?: string[];
   aspectRatio?: "16/10" | "9/16";
   isPrivate?: boolean;
-  isCurrentFocus?: boolean;
+  teamType?: "team" | "solo";
   webLink?: string;
-  githubLink?: string;
-  caseStudyLink?: string;
+  requestAccessSubject?: string;
 };
 
 export const dictionaries = {
@@ -50,17 +49,17 @@ export const dictionaries = {
       title: "Experiencia y Proyectos Destacados",
       badges: {
         nda: "Código Privado (NDA)",
-        currentFocus: "En Desarrollo / Current Focus",
+        team: "En Equipo",
+        solo: "Solo",
       },
       links: {
-        github: "Ver en GitHub",
         web: "Visitar Web",
-        caseStudy: "Ver Caso de Estudio",
+        requestAccess: "Solicitar Acceso",
       },
       items: [
         {
-          id: "veritia",
-          name: "Veritia (AI Legal Assistant)",
+          id: "legal-ai",
+          name: "Asistente Legal con IA",
           stack: ["React", "Next.js", "LLMs", "LangChain"],
           description:
             "Construcción de un pipeline RAG con LangChain y bases de datos vectoriales para el sector legal.",
@@ -70,12 +69,13 @@ export const dictionaries = {
               `https://res.cloudinary.com/dhydaltmh/image/upload/veritia${i + 1}.png`,
           ),
           aspectRatio: "16/10",
-          isPrivate: true,
-          webLink: "#",
+          isPrivate: false,
+          teamType: "team",
+          webLink: "https://www.veritia.cl",
         },
         {
-          id: "vina",
-          name: "Viña Pérez Cruz (Family Office)",
+          id: "family-office",
+          name: "Plataforma Family Office",
           stack: ["Next.js", "MongoDB", "Serverless"],
           description:
             "Plataforma web Serverless desplegada en Vercel con bases de datos documentales y mapas interactivos globales.",
@@ -86,11 +86,13 @@ export const dictionaries = {
           ),
           aspectRatio: "16/10",
           isPrivate: true,
-          webLink: "#",
+          teamType: "solo",
+          requestAccessSubject:
+            "Consulta sobre proyecto Plataforma Family Office",
         },
         {
-          id: "rmh",
-          name: "RMH Operations (Plataforma CMMS)",
+          id: "cmms",
+          name: "Sistema CMMS (Mantenimiento)",
           stack: ["NestJS", "React", "Monorepo"],
           description:
             "Sistema de gestión de mantenimiento en tiempo real con arquitectura Monorepo y Control de Acceso Basado en Roles.",
@@ -101,11 +103,12 @@ export const dictionaries = {
           ),
           aspectRatio: "16/10",
           isPrivate: true,
-          caseStudyLink: "#",
+          teamType: "solo",
+          requestAccessSubject: "Consulta sobre proyecto Sistema CMMS",
         },
         {
-          id: "cmpc",
-          name: "CMPC App (Offline-First)",
+          id: "offline-app",
+          name: "App Móvil Offline",
           stack: ["React Native", "Expo", "File System"],
           description:
             "Solución móvil de alta disponibilidad con optimización de memoria mediante File System para entornos sin red.",
@@ -116,16 +119,8 @@ export const dictionaries = {
           ),
           aspectRatio: "9/16",
           isPrivate: true,
-          caseStudyLink: "#",
-        },
-        {
-          id: "argus",
-          name: "Argus (SaaS MVP)",
-          stack: ["NestJS", "Expo", "Monorepo"],
-          description:
-            "Arquitectura Monorepo y desarrollo móvil con Expo para sentar las bases escalables de un producto SaaS.",
-          isPrivate: true,
-          isCurrentFocus: true,
+          teamType: "solo",
+          requestAccessSubject: "Consulta sobre proyecto App Móvil Offline",
         },
       ] as ProjectItem[],
     },
@@ -169,17 +164,17 @@ export const dictionaries = {
       title: "Experience & Featured Projects",
       badges: {
         nda: "Private Code (NDA)",
-        currentFocus: "In Development / Current Focus",
+        team: "Team",
+        solo: "Solo",
       },
       links: {
-        github: "View on GitHub",
         web: "Visit Website",
-        caseStudy: "View Case Study",
+        requestAccess: "Request Access",
       },
       items: [
         {
-          id: "veritia",
-          name: "Veritia (AI Legal Assistant)",
+          id: "legal-ai",
+          name: "AI Legal Assistant",
           stack: ["React", "Next.js", "LLMs", "LangChain"],
           description:
             "Built a RAG pipeline using LangChain and vector databases for the legal sector.",
@@ -189,12 +184,13 @@ export const dictionaries = {
               `https://res.cloudinary.com/dhydaltmh/image/upload/veritia${i + 1}.png`,
           ),
           aspectRatio: "16/10",
-          isPrivate: true,
-          webLink: "#",
+          isPrivate: false,
+          teamType: "team",
+          webLink: "https://www.veritia.cl",
         },
         {
-          id: "vina",
-          name: "Viña Pérez Cruz (Family Office)",
+          id: "family-office",
+          name: "Family Office Platform",
           stack: ["Next.js", "MongoDB", "Serverless"],
           description:
             "Serverless web platform deployed on Vercel with document databases and global interactive maps.",
@@ -205,11 +201,12 @@ export const dictionaries = {
           ),
           aspectRatio: "16/10",
           isPrivate: true,
-          webLink: "#",
+          teamType: "solo",
+          requestAccessSubject: "Inquiry about Family Office Platform project",
         },
         {
-          id: "rmh",
-          name: "RMH Operations (CMMS Platform)",
+          id: "cmms",
+          name: "CMMS Platform (Maintenance)",
           stack: ["NestJS", "React", "Monorepo"],
           description:
             "Real-time maintenance management system with Monorepo architecture and Role-Based Access Control.",
@@ -220,11 +217,12 @@ export const dictionaries = {
           ),
           aspectRatio: "16/10",
           isPrivate: true,
-          caseStudyLink: "#",
+          teamType: "solo",
+          requestAccessSubject: "Inquiry about CMMS Platform project",
         },
         {
-          id: "cmpc",
-          name: "CMPC App (Offline-First)",
+          id: "offline-app",
+          name: "Offline Mobile App",
           stack: ["React Native", "Expo", "File System"],
           description:
             "High-availability mobile solution with memory optimization via File System for offline environments.",
@@ -235,16 +233,8 @@ export const dictionaries = {
           ),
           aspectRatio: "9/16",
           isPrivate: true,
-          caseStudyLink: "#",
-        },
-        {
-          id: "argus",
-          name: "Argus (SaaS MVP)",
-          stack: ["NestJS", "Expo", "Monorepo"],
-          description:
-            "Monorepo architecture and mobile app layout establishing scalable foundations for a SaaS product.",
-          isPrivate: true,
-          isCurrentFocus: true,
+          teamType: "solo",
+          requestAccessSubject: "Inquiry about Offline Mobile App project",
         },
       ] as ProjectItem[],
     },

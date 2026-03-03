@@ -6,10 +6,11 @@ import {
   Briefcase,
   ChevronLeft,
   ChevronRight,
-  Github,
   ExternalLink,
   Lock,
-  Image as ImageIcon,
+  Mail,
+  Users,
+  User,
 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -39,7 +40,6 @@ function ImageCarousel({
       : "aspect-[16/10] w-full"; // Desktop landscape
 
   // Determine image object-fit based on aspect ratio
-  // `contain` works perfectly for mobile portraits to not crop them inside a weird box, `cover` is standard for landscapes
   const objectFitClass =
     aspectRatio === "9/16" ? "object-contain bg-gray-950" : "object-cover";
 
@@ -117,39 +117,33 @@ export function Projects() {
             <div
               key={project.id}
               className="flex flex-col group rounded-2xl border border-gray-800 bg-gray-950 overflow-hidden hover:border-gray-600 transition-colors duration-300 relative">
-              {project.isCurrentFocus && (
-                <div className="absolute top-4 right-4 z-10 px-3 py-1.5 bg-brand-purple/90 backdrop-blur-md text-white text-xs font-bold rounded-full shadow-lg border border-brand-purple-hover flex items-center gap-1.5">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                  </span>
-                  {t.projects.badges.currentFocus}
-                </div>
-              )}
-
-              {project.images && project.images.length > 0 ? (
+              {project.images && project.images.length > 0 && (
                 <ImageCarousel
                   images={project.images}
                   alt={project.name}
                   aspectRatio={project.aspectRatio}
                 />
-              ) : (
-                <div className="relative bg-gray-900 border-b border-gray-800 overflow-hidden group">
-                  <div className="w-full aspect-[16/10] bg-gray-950 flex flex-col items-center justify-center">
-                    <div className="p-4 bg-brand-purple/10 rounded-full mb-3 shadow-[0_0_15px_rgba(124,58,237,0.3)]">
-                      <ImageIcon className="w-8 h-8 text-brand-purple" />
-                    </div>
-                    <span className="text-gray-500 font-medium text-sm">
-                      Image Placeholder
-                    </span>
-                  </div>
-                </div>
               )}
 
               <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-purple-hover transition-colors">
-                  {project.name}
-                </h3>
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-xl font-bold text-white group-hover:text-brand-purple-hover transition-colors">
+                    {project.name}
+                  </h3>
+                  {/* Team / Solo Badge */}
+                  {project.teamType && (
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-gray-800 border border-gray-700 text-gray-300 text-xs font-semibold">
+                      {project.teamType === "team" ? (
+                        <Users className="w-3.5 h-3.5" />
+                      ) : (
+                        <User className="w-3.5 h-3.5" />
+                      )}
+                      {project.teamType === "team"
+                        ? t.projects.badges.team
+                        : t.projects.badges.solo}
+                    </div>
+                  )}
+                </div>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.stack.map((tech) => (
@@ -167,22 +161,19 @@ export function Projects() {
 
                 <div className="flex flex-wrap items-center gap-3 mt-auto pt-5 border-t border-gray-800/80">
                   {project.isPrivate ? (
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-gray-900 border border-gray-800 text-gray-500 text-sm font-medium cursor-not-allowed select-none">
-                      <Lock className="w-4 h-4 text-gray-600" />
-                      {t.projects.badges.nda}
-                    </div>
-                  ) : project.githubLink ? (
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium transition-colors">
-                      <Github className="w-4 h-4" />
-                      {t.projects.links.github}
-                    </a>
-                  ) : null}
-
-                  {project.webLink && (
+                    <>
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-gray-900 border border-gray-800 text-gray-500 text-sm font-medium cursor-not-allowed select-none">
+                        <Lock className="w-4 h-4 text-gray-600" />
+                        {t.projects.badges.nda}
+                      </div>
+                      <a
+                        href={`mailto:guillechinni2001@gmail.com?subject=${encodeURIComponent(project.requestAccessSubject || "")}`}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-700 hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/10 text-gray-300 text-sm font-medium transition-colors">
+                        <Mail className="w-4 h-4" />
+                        {t.projects.links.requestAccess}
+                      </a>
+                    </>
+                  ) : project.webLink ? (
                     <a
                       href={project.webLink}
                       target="_blank"
@@ -191,17 +182,7 @@ export function Projects() {
                       <ExternalLink className="w-4 h-4" />
                       {t.projects.links.web}
                     </a>
-                  )}
-
-                  {project.caseStudyLink && (
-                    <a
-                      href={project.caseStudyLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-700 hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/10 text-gray-300 text-sm font-medium transition-colors">
-                      {t.projects.links.caseStudy}
-                    </a>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
