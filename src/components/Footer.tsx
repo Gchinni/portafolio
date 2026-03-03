@@ -27,7 +27,7 @@ export function Footer() {
               <Mail className="h-6 w-6" />
             </a>
             <a
-              href="https://linkedin.com/in/guillermo-chinni"
+              href="https://www.linkedin.com/in/guillermo-chinni-aylwin/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-brand-purple transition-colors p-2 bg-gray-900 rounded-full hover:bg-gray-800"
@@ -35,7 +35,7 @@ export function Footer() {
               <Linkedin className="h-6 w-6" />
             </a>
             <a
-              href="https://github.com/guillermochinni"
+              href="https://github.com/Gchinni"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-brand-purple transition-colors p-2 bg-gray-900 rounded-full hover:bg-gray-800"
