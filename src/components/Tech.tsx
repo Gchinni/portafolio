@@ -30,27 +30,27 @@ const technologies = [
 const getTechIcon = (tech: string) => {
   switch (tech) {
     case "React":
-      return <FaReact className="h-10 w-10" />;
+      return <FaReact className="h-6 w-6" />;
     case "Next.js":
-      return <SiNextdotjs className="h-10 w-10" />;
+      return <SiNextdotjs className="h-6 w-6" />;
     case "Node.js":
-      return <FaNodeJs className="h-10 w-10" />;
+      return <FaNodeJs className="h-6 w-6" />;
     case "TypeScript":
-      return <SiTypescript className="h-10 w-10" />;
+      return <SiTypescript className="h-6 w-6" />;
     case "Expo":
-      return <SiExpo className="h-10 w-10" />;
+      return <SiExpo className="h-6 w-6" />;
     case "MongoDB":
-      return <SiMongodb className="h-10 w-10" />;
+      return <SiMongodb className="h-6 w-6" />;
     case "NestJS":
-      return <SiNestjs className="h-10 w-10" />;
+      return <SiNestjs className="h-6 w-6" />;
     case "Tailwind CSS":
-      return <SiTailwindcss className="h-10 w-10" />;
+      return <SiTailwindcss className="h-6 w-6" />;
     case "Vercel":
-      return <SiVercel className="h-10 w-10" />;
+      return <SiVercel className="h-6 w-6" />;
     case "Azure":
-      return <VscAzure className="h-10 w-10" />;
+      return <VscAzure className="h-6 w-6" />;
     default:
-      return <Layers className="h-10 w-10" />;
+      return <Layers className="h-6 w-6" />;
   }
 };
 
@@ -75,8 +75,8 @@ export function Tech() {
           {technologies.map((tech) => (
             <div
               key={tech}
-              className="group flex flex-col items-center justify-center p-6 bg-gray-900 border border-gray-800 rounded-xl hover:border-brand-purple/50 hover:bg-gray-800 transition-all duration-300">
-              <div className="mb-4 text-gray-500 group-hover:text-brand-purple transition-colors duration-300">
+              className="group flex items-center justify-center gap-3 p-4 bg-gray-900 border border-gray-800 rounded-xl hover:border-brand-purple/50 hover:bg-gray-800 transition-all duration-300">
+              <div className="flex-shrink-0 text-gray-400 group-hover:text-brand-purple transition-colors duration-300">
                 {getTechIcon(tech)}
               </div>
               <span className="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors">
