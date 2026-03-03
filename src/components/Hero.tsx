@@ -24,10 +24,12 @@ export function Hero() {
               <ArrowRight className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
             </a>
             <a
-              href="/cv.pdf"
+              href={t.hero.cvLink}
               target="_blank"
               rel="noopener noreferrer"
+              download
               className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg border border-brand-purple bg-transparent px-8 py-3.5 text-base font-semibold text-brand-purple hover:bg-brand-purple/10 hover:border-brand-purple-hover transition-all duration-200">
+              {" "}
               <FileText className="mr-2 -ml-1 h-5 w-5" aria-hidden="true" />
               {t.hero.ctaCv}
             </a>

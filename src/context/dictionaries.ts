@@ -1,5 +1,18 @@
 export type Language = "es" | "en";
 
+export type ProjectItem = {
+  id: string;
+  name: string;
+  stack: string[];
+  description: string;
+  images?: string[];
+  aspectRatio?: "16/10" | "9/16";
+  isPrivate?: boolean;
+  teamType?: "team" | "solo";
+  webLink?: string;
+  requestAccessSubject?: string;
+};
+
 export const dictionaries = {
   es: {
     nav: {
@@ -14,69 +27,118 @@ export const dictionaries = {
         "Guillermo Chinni - Full-Stack Developer especializado en React, Next.js, Node.js y arquitecturas Cloud.",
       ctaProjects: "Ver Proyectos",
       ctaCv: "Descargar CV",
+      cvLink: "/cv/CV_Guillermo_Chinni_espanol.pdf",
     },
     about: {
       title: "Sobre mí",
       text: "Soy Ingeniero Informático con sólida experiencia en el diseño y desarrollo de aplicaciones web y móviles. Me especializo en arquitecturas modernas (Monorepos, Serverless, integraciones LLM). Fuera del código, sirvo como Bombero Voluntario en la 18ª Compañía de Santiago; una vocación que ha forjado mi capacidad para tomar decisiones críticas, liderar equipos y mantener la claridad bajo escenarios de alta presión.",
+      workflow: {
+        title: "Metodología y Calidad de Código",
+        tags: [
+          "Arquitectura Escalable",
+          "Code Reviews",
+          "Integración Continua (CI/CD)",
+          "Metodologías Ágiles (Jira)",
+          "QA Testing",
+        ],
+      },
     },
     tech: {
       title: "Tech Stack",
     },
     projects: {
       title: "Experiencia y Proyectos Destacados",
+      badges: {
+        nda: "Código Privado (NDA)",
+        team: "En Equipo",
+        solo: "Solo",
+      },
+      links: {
+        web: "Visitar Web",
+        requestAccess: "Solicitar Acceso",
+      },
       items: [
         {
-          id: "veritia",
-          name: "Veritia (AI Legal Assistant)",
+          id: "legal-ai",
+          name: "Asistente Legal con IA",
           stack: ["React", "Next.js", "LLMs", "LangChain"],
           description:
             "Construcción de un pipeline RAG con LangChain y bases de datos vectoriales para el sector legal.",
-          images: [
-            "https://picsum.photos/seed/veritia1/800/600",
-            "https://picsum.photos/seed/veritia2/800/600",
-            "https://picsum.photos/seed/veritia3/800/600",
-          ],
+          images: Array.from(
+            { length: 5 },
+            (_, i) =>
+              `https://res.cloudinary.com/dhydaltmh/image/upload/veritia${i + 1}.png`,
+          ),
+          aspectRatio: "16/10",
+          isPrivate: false,
+          teamType: "team",
+          webLink: "https://www.veritia.cl",
         },
         {
-          id: "cmpc",
-          name: "CMPC App (Offline-First)",
-          stack: ["React Native", "Expo", "File System"],
-          description:
-            "Solución móvil de alta disponibilidad con optimización de memoria mediante File System para entornos sin red.",
-          images: [
-            "https://picsum.photos/seed/cmpc1/800/600",
-            "https://picsum.photos/seed/cmpc2/800/600",
-            "https://picsum.photos/seed/cmpc3/800/600",
-          ],
-        },
-        {
-          id: "vina",
-          name: "Viña Pérez Cruz (Family Office)",
+          id: "family-office",
+          name: "Plataforma Family Office",
           stack: ["Next.js", "MongoDB", "Serverless"],
           description:
             "Plataforma web Serverless desplegada en Vercel con bases de datos documentales y mapas interactivos globales.",
-          images: [
-            "https://picsum.photos/seed/vina1/800/600",
-            "https://picsum.photos/seed/vina2/800/600",
-          ],
+          images: Array.from(
+            { length: 6 },
+            (_, i) =>
+              `https://res.cloudinary.com/dhydaltmh/image/upload/family-office${i + 1}.png`,
+          ),
+          aspectRatio: "16/10",
+          isPrivate: true,
+          teamType: "solo",
+          requestAccessSubject:
+            "Consulta sobre proyecto Plataforma Family Office",
         },
         {
-          id: "rmh",
-          name: "RMH Operations (Plataforma CMMS)",
+          id: "cmms",
+          name: "Sistema CMMS (Mantenimiento)",
           stack: ["NestJS", "React", "Monorepo"],
           description:
             "Sistema de gestión de mantenimiento en tiempo real con arquitectura Monorepo y Control de Acceso Basado en Roles.",
-          images: [
-            "https://picsum.photos/seed/rmh1/800/600",
-            "https://picsum.photos/seed/rmh2/800/600",
-            "https://picsum.photos/seed/rmh3/800/600",
-          ],
+          images: Array.from(
+            { length: 6 },
+            (_, i) =>
+              `https://res.cloudinary.com/dhydaltmh/image/upload/CMMS${i + 1}.png`,
+          ),
+          aspectRatio: "16/10",
+          isPrivate: true,
+          teamType: "solo",
+          requestAccessSubject: "Consulta sobre proyecto Sistema CMMS",
         },
-      ],
+        {
+          id: "offline-app",
+          name: "App Móvil Offline",
+          stack: ["React Native", "Expo", "File System"],
+          description:
+            "Solución móvil de alta disponibilidad con optimización de memoria mediante File System para entornos sin red.",
+          images: Array.from(
+            { length: 7 },
+            (_, i) =>
+              `https://res.cloudinary.com/dhydaltmh/image/upload/app-movil${i + 1}.png`,
+          ),
+          aspectRatio: "9/16",
+          isPrivate: true,
+          teamType: "solo",
+          requestAccessSubject: "Consulta sobre proyecto App Móvil Offline",
+        },
+      ] as ProjectItem[],
     },
     footer: {
       connectText: "¿Construimos algo increíble? Hablemos.",
       copyright: `© ${new Date().getFullYear()} Guillermo Chinni. Todos los derechos reservados.`,
+    },
+    contact: {
+      title: "Ponte en contacto",
+      name: "Nombre completo",
+      email: "Correo electrónico",
+      message: "Tu mensaje",
+      submit: "Enviar mensaje",
+      submitting: "Enviando...",
+      success: "¡Mensaje enviado con éxito! Te responderé pronto.",
+      error: "Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.",
+      captchaError: "Por favor, completa el Captcha.",
     },
   },
   en: {
@@ -92,69 +154,117 @@ export const dictionaries = {
         "Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js, and Cloud architectures.",
       ctaProjects: "View Projects",
       ctaCv: "Download CV",
+      cvLink: "/cv/CV_Guillermo_Chinni_english.pdf",
     },
     about: {
       title: "About Me",
       text: "I am a Software Engineer with solid experience in designing and developing web and mobile applications. I specialize in modern architectures (Monorepos, Serverless, LLM integrations). Beyond coding, I serve as a Volunteer Firefighter at the 18th Fire Company of Santiago; a calling that has forged my ability to make critical decisions, lead teams, and maintain clarity under high-pressure scenarios.",
+      workflow: {
+        title: "Methodology & Code Quality",
+        tags: [
+          "Scalable Architecture",
+          "Code Reviews",
+          "Continuous Integration (CI/CD)",
+          "Agile (Jira)",
+          "QA Testing",
+        ],
+      },
     },
     tech: {
       title: "Tech Stack",
     },
     projects: {
       title: "Experience & Featured Projects",
+      badges: {
+        nda: "Private Code (NDA)",
+        team: "Team",
+        solo: "Alone",
+      },
+      links: {
+        web: "Visit Website",
+        requestAccess: "Request Access",
+      },
       items: [
         {
-          id: "veritia",
-          name: "Veritia (AI Legal Assistant)",
+          id: "legal-ai",
+          name: "AI Legal Assistant",
           stack: ["React", "Next.js", "LLMs", "LangChain"],
           description:
             "Built a RAG pipeline using LangChain and vector databases for the legal sector.",
-          images: [
-            "https://picsum.photos/seed/veritia1/800/600",
-            "https://picsum.photos/seed/veritia2/800/600",
-            "https://picsum.photos/seed/veritia3/800/600",
-          ],
+          images: Array.from(
+            { length: 5 },
+            (_, i) =>
+              `https://res.cloudinary.com/dhydaltmh/image/upload/veritia${i + 1}.png`,
+          ),
+          aspectRatio: "16/10",
+          isPrivate: false,
+          teamType: "team",
+          webLink: "https://www.veritia.cl",
         },
         {
-          id: "cmpc",
-          name: "CMPC App (Offline-First)",
-          stack: ["React Native", "Expo", "File System"],
-          description:
-            "High-availability mobile solution with memory optimization via File System for offline environments.",
-          images: [
-            "https://picsum.photos/seed/cmpc1/800/600",
-            "https://picsum.photos/seed/cmpc2/800/600",
-            "https://picsum.photos/seed/cmpc3/800/600",
-          ],
-        },
-        {
-          id: "vina",
-          name: "Viña Pérez Cruz (Family Office)",
+          id: "family-office",
+          name: "Family Office Platform",
           stack: ["Next.js", "MongoDB", "Serverless"],
           description:
             "Serverless web platform deployed on Vercel with document databases and global interactive maps.",
-          images: [
-            "https://picsum.photos/seed/vina1/800/600",
-            "https://picsum.photos/seed/vina2/800/600",
-          ],
+          images: Array.from(
+            { length: 6 },
+            (_, i) =>
+              `https://res.cloudinary.com/dhydaltmh/image/upload/family-office${i + 1}.png`,
+          ),
+          aspectRatio: "16/10",
+          isPrivate: true,
+          teamType: "solo",
+          requestAccessSubject: "Inquiry about Family Office Platform project",
         },
         {
-          id: "rmh",
-          name: "RMH Operations (CMMS Platform)",
+          id: "cmms",
+          name: "CMMS Platform (Maintenance)",
           stack: ["NestJS", "React", "Monorepo"],
           description:
             "Real-time maintenance management system with Monorepo architecture and Role-Based Access Control.",
-          images: [
-            "https://picsum.photos/seed/rmh1/800/600",
-            "https://picsum.photos/seed/rmh2/800/600",
-            "https://picsum.photos/seed/rmh3/800/600",
-          ],
+          images: Array.from(
+            { length: 6 },
+            (_, i) =>
+              `https://res.cloudinary.com/dhydaltmh/image/upload/CMMS${i + 1}.png`,
+          ),
+          aspectRatio: "16/10",
+          isPrivate: true,
+          teamType: "solo",
+          requestAccessSubject: "Inquiry about CMMS Platform project",
         },
-      ],
+        {
+          id: "offline-app",
+          name: "Offline Mobile App",
+          stack: ["React Native", "Expo", "File System"],
+          description:
+            "High-availability mobile solution with memory optimization via File System for offline environments.",
+          images: Array.from(
+            { length: 7 },
+            (_, i) =>
+              `https://res.cloudinary.com/dhydaltmh/image/upload/app-movil${i + 1}.png`,
+          ),
+          aspectRatio: "9/16",
+          isPrivate: true,
+          teamType: "solo",
+          requestAccessSubject: "Inquiry about Offline Mobile App project",
+        },
+      ] as ProjectItem[],
     },
     footer: {
       connectText: "Let’s build something amazing together.",
       copyright: `© ${new Date().getFullYear()} Guillermo Chinni. All rights reserved.`,
+    },
+    contact: {
+      title: "Get in touch",
+      name: "Full Name",
+      email: "Email Address",
+      message: "Your Message",
+      submit: "Send Message",
+      submitting: "Sending...",
+      success: "Message sent safely! I'll get back to you soon.",
+      error: "An error occurred while sending the message. Please try again.",
+      captchaError: "Please complete the Captcha.",
     },
   },
 };
