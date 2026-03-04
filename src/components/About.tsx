@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/context/i18n-context";
 import { User, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 export function About() {
   const { t } = useI18n();
@@ -41,12 +42,17 @@ export function About() {
             </div>
           </div>
 
-          <div className="w-48 h-48 md:w-64 md:h-64 shrink-0 order-1 md:order-2 rounded-2xl overflow-hidden border-2 border-brand-purple/30 relative bg-gray-800 flex items-center justify-center">
-            {/* Reemplazar con <img src="..." /> cuando la foto esté lista */}
-            <User className="w-20 h-20 text-gray-600" />
-            <span className="absolute bottom-4 text-xs font-medium text-gray-500">
-              Foto de Perfil
-            </span>
+          <div className="w-48 h-48 md:w-64 md:h-64 shrink-0 order-1 md:order-2 rounded-2xl overflow-hidden border-2 border-brand-purple/30 relative bg-gray-800 flex items-center justify-center group z-10">
+            <Image
+              src="https://res.cloudinary.com/dhydaltmh/image/upload/perfil1.jpg"
+              alt="Guillermo Chinni Profile"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 192px, 256px"
+              priority
+            />
+            {/* Capa morada difuminada (solo desktop) que desaparece al hacer hover */}
+            <div className="hidden md:block absolute inset-0 bg-brand-purple/40 transition-opacity duration-500 ease-in-out group-hover:opacity-0 z-20"></div>
           </div>
         </div>
       </div>
