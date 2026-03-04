@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/context/i18n-context";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 export function Navbar() {
@@ -18,12 +19,17 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-800 bg-gray-900/80 backdrop-blur-md">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex-shrink-0">
-            <a
-              href="#"
-              className="text-xl font-bold tracking-tighter text-gray-100 hover:text-brand-purple transition-colors">
-              GC.
+        <div className="flex h-20 items-center justify-between">
+          <div className="shrink-0 flex items-center">
+            <a href="#" className="hover:opacity-80 transition-opacity">
+              <Image
+                src="/marca/logo.png"
+                alt="Guillermo Chinni Logo"
+                width={120}
+                height={40}
+                className="h-14 w-auto object-contain"
+                priority
+              />
             </a>
           </div>
 
