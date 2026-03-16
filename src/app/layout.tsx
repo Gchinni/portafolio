@@ -6,7 +6,7 @@ import { I18nProvider } from "@/context/i18n-context";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Guillermo Chinni | Full-Stack Developer",
+  title: "Guillermo Chinni | Portfolio",
   description:
     "Portfolio of Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js and Cloud Architectures (Monorepos, Serverless, AI).",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "Monorepo",
   ],
   openGraph: {
-    title: "Guillermo Chinni | Full-Stack Developer",
+    title: "Guillermo Chinni | Portfolio",
     description:
       "Portfolio of Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js and Cloud Architectures.",
     url: "https://guillermochinni.com", // Puedes actualizar este dominio según necesites
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Guillermo Chinni | Full-Stack Developer",
+    title: "Guillermo Chinni | Portfolio",
     description:
       "Portfolio of Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js and Cloud Architectures.",
     images: ["/images/og-image.jpg"],
@@ -46,6 +46,11 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: "/marca/favicon.png",
+    shortcut: "/marca/favicon.png",
+    apple: "/marca/favicon.png",
   },
 };
 
