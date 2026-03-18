@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/context/i18n-context";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -67,6 +68,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} min-h-screen bg-gray-900 text-gray-100 selection:bg-brand-purple selection:text-white`}>
         <I18nProvider>{children}</I18nProvider>
+        <Analytics />
       </body>
     </html>
   );
