@@ -90,7 +90,7 @@ const BOTTOM_CATEGORIES: Category[] = [
 
 function TechChip({ label, icon: Icon }: TechItem) {
   return (
-    <span className="flex items-center gap-1.5 px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 text-primary rounded-full text-xs font-label hover:bg-primary hover:text-on-primary-fixed transition-colors cursor-default">
+    <span className="tech-chip flex items-center gap-1.5 px-4 py-2 backdrop-blur-sm text-primary rounded-full text-xs font-label cursor-default">
       <Icon className="w-3.5 h-3.5 shrink-0" />
       {label}
     </span>

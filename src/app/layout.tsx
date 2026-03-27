@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/context/i18n-context";
+import { ThemeProvider } from "@/context/theme-context";
 
 const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({
@@ -64,13 +65,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} scroll-smooth`}>
+    <html lang="en" className={`${spaceGrotesk.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0a0a0c" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);})();`,
+          }}
+        />
       </head>
       <body
-        className={`${inter.className} min-h-screen text-white selection:bg-primary selection:text-on-primary`}>
-        <I18nProvider>{children}</I18nProvider>
+        className={`${inter.className} min-h-screen selection:bg-primary selection:text-on-primary`}>
+        <ThemeProvider>
+          <I18nProvider>{children}</I18nProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
