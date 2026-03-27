@@ -1,11 +1,13 @@
 "use client";
 
 import { useI18n } from "@/context/i18n-context";
-import { Menu, X } from "lucide-react";
+import { useTheme } from "@/context/theme-context";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useState } from "react";
 
 export function Navbar() {
   const { lang, t, toggleLang } = useI18n();
+  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
@@ -19,7 +21,7 @@ export function Navbar() {
   return (
     <header className="fixed top-0 w-full z-50 px-4 md:px-6">
       <nav className="flex justify-between items-center h-16 px-6 md:px-10 max-w-7xl mx-auto glass-nav border border-white/5 mt-4 rounded-full">
-        <div className="text-lg font-bold tracking-tighter text-white font-headline">
+        <div className="text-lg font-bold tracking-tighter text-on-surface font-headline">
           Guillermo Chinni
         </div>
 
@@ -37,12 +39,26 @@ export function Navbar() {
 
         {/* Desktop actions */}
         <div className="hidden md:flex items-center gap-4">
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            className="w-8 h-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all"
+            aria-label="Toggle theme">
+            {theme === "dark" ? (
+              <Sun className="w-4 h-4" />
+            ) : (
+              <Moon className="w-4 h-4" />
+            )}
+          </button>
+
+          {/* Language toggle */}
           <button
             onClick={toggleLang}
             className="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
             aria-label="Toggle language">
             {lang === "en" ? "ES" : "EN"}
           </button>
+
           <a
             href={t.hero.cvLink}
             target="_blank"
@@ -75,16 +91,28 @@ export function Navbar() {
             </a>
           ))}
           <div className="flex items-center justify-between mt-4 pt-2">
-            <button
-              onClick={() => {
-                toggleLang();
-                setIsOpen(false);
-              }}
-              className="text-sm font-bold text-primary font-label">
-              {lang === "en"
-                ? "Cambiar a Español (ES)"
-                : "Switch to English (EN)"}
-            </button>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={toggleTheme}
+                className="w-8 h-8 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all"
+                aria-label="Toggle theme">
+                {theme === "dark" ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
+              </button>
+              <button
+                onClick={() => {
+                  toggleLang();
+                  setIsOpen(false);
+                }}
+                className="text-sm font-bold text-primary font-label">
+                {lang === "en"
+                  ? "Cambiar a Español (ES)"
+                  : "Switch to English (EN)"}
+              </button>
+            </div>
             <a
               href={t.hero.cvLink}
               target="_blank"

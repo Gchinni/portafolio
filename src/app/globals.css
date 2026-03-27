@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* === COLOR SYSTEM === */
+  /* === COLOR SYSTEM (dark default) === */
   --color-outline: #777575;
   --color-background: #0a0a0c;
   --color-surface: #0a0a0c;
@@ -43,6 +43,42 @@
   --animate-float-reverse: float-reverse 25s ease-in-out infinite;
 }
 
+/* ============================================
+   LIGHT THEME OVERRIDES
+   ============================================ */
+[data-theme="light"] {
+  --color-background: #f4f0ff;
+  --color-surface: #f4f0ff;
+  --color-surface-dim: #e8e1f8;
+  --color-surface-bright: #ffffff;
+  --color-surface-variant: #ede6ff;
+  --color-surface-container: #ece6ff;
+  --color-surface-container-low: #f4f0ff;
+  --color-surface-container-high: #e2d9f7;
+  --color-surface-container-highest: #d8cff0;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-background: #1c1126;
+  --color-on-surface: #1c1126;
+  --color-on-surface-variant: #5b4a72;
+  --color-outline: #9080aa;
+  --color-outline-variant: #d5cae8;
+  --color-primary: #7c3aed;
+  --color-primary-dim: #6d28d9;
+  --color-primary-fixed: #7c3aed;
+  --color-primary-fixed-dim: #6d28d9;
+  --color-on-primary: #ffffff;
+  --color-on-primary-fixed: #ffffff;
+  --color-inverse-primary: #cc97ff;
+  --color-secondary: #9333ea;
+  --color-secondary-container: #f0e6ff;
+  --color-on-secondary-container: #4a0072;
+  --color-brand-purple: #7c3aed;
+  --color-brand-purple-hover: #6d28d9;
+}
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
 @keyframes float {
   0%, 100% { transform: translate(0, 0) scale(1); }
   33% { transform: translate(30px, -50px) scale(1.1); }
@@ -55,13 +91,27 @@
   66% { transform: translate(40px, -20px) scale(0.8); }
 }
 
+/* ============================================
+   BASE STYLES
+   ============================================ */
+html {
+  transition: background-color 0.3s ease;
+}
+
 body {
-  background-color: #0a0a0c;
+  background-color: var(--color-background);
   background-image:
     radial-gradient(circle at 20% 30%, rgba(76, 29, 149, 0.15) 0%, transparent 40%),
     radial-gradient(circle at 80% 70%, rgba(88, 28, 135, 0.15) 0%, transparent 40%);
-  color: #ffffff;
+  color: var(--color-on-background);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="light"] body {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(109, 40, 217, 0.07) 0%, transparent 40%);
 }
 
 body::before {
@@ -77,9 +127,18 @@ body::before {
   z-index: 10;
 }
 
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
 .glass-nav {
-  background: rgba(10, 10, 12, 0.7);
+  background: rgba(10, 10, 12, 0.75);
   backdrop-filter: blur(16px);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="light"] .glass-nav {
+  background: rgba(244, 240, 255, 0.85);
+  border-color: rgba(124, 58, 237, 0.15) !important;
 }
 
 .neon-glow {
@@ -90,10 +149,40 @@ body::before {
   background: linear-gradient(135deg, #cc97ff 0%, #9e41f5 100%);
 }
 
+[data-theme="light"] .hero-gradient {
+  background: linear-gradient(135deg, #9333ea 0%, #6d28d9 100%);
+}
+
 .orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.4;
   z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="light"] .orb {
+  opacity: 0.12;
+}
+
+.tech-chip {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(204, 151, 255, 0.3);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.tech-chip:hover {
+  background-color: #7c3aed !important;
+  border-color: #7c3aed;
+  color: #fce7ff !important;
+}
+
+[data-theme="light"] .tech-chip {
+  background-color: rgba(124, 58, 237, 0.07);
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+[data-theme="light"] .tech-chip:hover {
+  color: #f9a8d4 !important;
 }
