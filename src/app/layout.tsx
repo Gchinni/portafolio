@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/context/i18n-context";
 
 const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+});
 
 export const metadata: Metadata = {
-  title: "Guillermo Chinni | Portfolio",
+  title: "Guillermo Chinni | Full-Stack Developer",
   description:
     "Portfolio of Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js and Cloud Architectures (Monorepos, Serverless, AI).",
   keywords: [
@@ -20,10 +24,10 @@ export const metadata: Metadata = {
     "Monorepo",
   ],
   openGraph: {
-    title: "Guillermo Chinni | Portfolio",
+    title: "Guillermo Chinni | Full-Stack Developer",
     description:
       "Portfolio of Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js and Cloud Architectures.",
-    url: "https://guillermochinni.com", // Puedes actualizar este dominio según necesites
+    url: "https://guillermochinni.com",
     siteName: "Guillermo Chinni Portfolio",
     images: [
       {
@@ -33,12 +37,12 @@ export const metadata: Metadata = {
         alt: "Guillermo Chinni - Full-Stack Developer",
       },
     ],
-    locale: "es_ES",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Guillermo Chinni | Portfolio",
+    title: "Guillermo Chinni | Full-Stack Developer",
     description:
       "Portfolio of Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js and Cloud Architectures.",
     images: ["/images/og-image.jpg"],
@@ -60,12 +64,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="en" className={`${spaceGrotesk.variable} scroll-smooth`}>
       <head>
-        <meta name="theme-color" content="#111827" />
+        <meta name="theme-color" content="#0a0a0c" />
       </head>
       <body
-        className={`${inter.className} min-h-screen bg-gray-900 text-gray-100 selection:bg-brand-purple selection:text-white`}>
+        className={`${inter.className} min-h-screen text-white selection:bg-primary selection:text-on-primary`}>
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>

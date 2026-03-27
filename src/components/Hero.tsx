@@ -1,52 +1,61 @@
 "use client";
 
 import { useI18n } from "@/context/i18n-context";
-import { ArrowRight, FileText } from "lucide-react";
+import Image from "next/image";
 
 export function Hero() {
   const { t } = useI18n();
 
   return (
-    <section className="relative overflow-hidden pt-24 pb-32 lg:pt-36 lg:pb-40">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            {t.hero.title}
+    <section
+      id="home"
+      className="min-h-screen flex items-center pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+      <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+        {/* Text */}
+        <div className="order-2 md:order-1">
+          <span className="font-label text-primary uppercase tracking-widest text-sm mb-4 block">
+            {t.hero.hiIm}
+          </span>
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-4 font-headline leading-none">
+            Guillermo Chinni
           </h1>
-          <p className="mt-6 mx-auto max-w-2xl text-lg text-gray-400 sm:text-xl">
-            {t.hero.subtitle}
+          <h2 className="text-2xl md:text-3xl font-medium text-on-surface-variant mb-6">
+            Full-Stack Developer{" "}
+            <span className="text-primary">(React | Node | Expo)</span>
+          </h2>
+          <p className="text-lg text-on-surface-variant/90 max-w-lg mb-10 leading-relaxed">
+            {t.hero.description}
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-wrap gap-4">
             <a
               href="#projects"
-              className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg bg-brand-purple px-8 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-brand-purple-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-purple transition-all duration-200">
+              className="hero-gradient text-on-primary-fixed px-8 py-4 rounded-lg font-bold transition-all active:scale-95 neon-glow">
               {t.hero.ctaProjects}
-              <ArrowRight className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
             </a>
             <a
-              href={t.hero.cvLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg border border-brand-purple bg-transparent px-8 py-3.5 text-base font-semibold text-brand-purple hover:bg-brand-purple/10 hover:border-brand-purple-hover transition-all duration-200">
-              {" "}
-              <FileText className="mr-2 -ml-1 h-5 w-5" aria-hidden="true" />
-              {t.hero.ctaCv}
+              href="#contact"
+              className="bg-white/5 border border-outline-variant hover:border-primary hover:text-primary px-8 py-4 rounded-lg font-bold transition-all active:scale-95 backdrop-blur-sm">
+              {t.hero.ctaContact}
             </a>
           </div>
         </div>
-      </div>
 
-      {/* Decorative background element */}
-      <div
-        className="absolute top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 opacity-20 blur-3xl"
-        aria-hidden="true">
-        <div
-          className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-brand-purple to-gray-800"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}></div>
+        {/* Photo */}
+        <div className="order-1 md:order-2 flex justify-center">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-linear-to-r from-primary to-secondary rounded-full blur opacity-40 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-surface-container-high overflow-hidden shadow-2xl bg-surface-container-high">
+              <Image
+                src="https://res.cloudinary.com/dhydaltmh/image/upload/perfil1.jpg"
+                alt="Guillermo Chinni Profile"
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                sizes="(max-width: 768px) 256px, 320px"
+                priority
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
