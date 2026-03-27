@@ -12,7 +12,7 @@ type I18nContextType = {
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Language>("es");
+  const [lang, setLang] = useState<Language>("en");
 
   const toggleLang = () => {
     setLang((prev) => (prev === "es" ? "en" : "es"));

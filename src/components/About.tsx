@@ -1,58 +1,48 @@
 "use client";
 
 import { useI18n } from "@/context/i18n-context";
-import { User, CheckCircle2 } from "lucide-react";
-import Image from "next/image";
+import { AboutCard } from "@/context/dictionaries";
+import { GraduationCap, Globe, Flame } from "lucide-react";
+
+const cardIcons = [
+  <GraduationCap key="edu" className="w-6 h-6 text-primary" />,
+  <Globe key="lang" className="w-6 h-6 text-primary" />,
+  <Flame key="beyond" className="w-6 h-6 text-primary" />,
+];
 
 export function About() {
   const { t } = useI18n();
 
   return (
-    <section id="about" className="py-24 bg-gray-900 border-t border-gray-800">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1 w-full order-2 md:order-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 bg-brand-purple/10 rounded-lg">
-                <User className="h-6 w-6 text-brand-purple" />
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight text-white">
-                {t.about.title}
-              </h2>
-            </div>
-
-            <p className="text-lg leading-relaxed text-gray-300 mb-10">
-              {t.about.text}
-            </p>
-
-            <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700/50">
-              <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-brand-purple" />
-                {t.about.workflow.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {t.about.workflow.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center px-3 py-1 rounded-full bg-gray-900 border border-gray-700 text-sm font-medium text-gray-300 shadow-sm">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+    <section id="about" className="py-24 relative">
+      <div className="absolute inset-0 bg-surface-container-low/40 backdrop-blur-[2px]" />
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <div className="flex flex-col md:flex-row gap-16">
+          {/* Text column */}
+          <div className="md:w-1/2">
+            <h2 className="text-4xl font-bold font-headline mb-8 tracking-tight">
+              {t.about.title}
+            </h2>
+            <div className="space-y-6 text-on-surface-variant text-lg leading-relaxed">
+              {t.about.paragraphs.map((p: string, i: number) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
           </div>
 
-          <div className="w-48 h-48 md:w-64 md:h-64 shrink-0 order-1 md:order-2 rounded-2xl overflow-hidden border-2 border-brand-purple/30 relative bg-gray-800 flex items-center justify-center group z-10">
-            <Image
-              src="https://res.cloudinary.com/dhydaltmh/image/upload/perfil1.jpg"
-              alt="Guillermo Chinni Profile"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 192px, 256px"
-              priority
-            />
-            {/* Capa morada difuminada (solo desktop) que desaparece al hacer hover */}
-            <div className="hidden md:block absolute inset-0 bg-brand-purple/40 transition-opacity duration-500 ease-in-out group-hover:opacity-0 z-20"></div>
+          {/* Fact cards */}
+          <div className="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {t.about.cards.map((card: AboutCard, i: number) => (
+              <div
+                key={i}
+                className={`bg-surface-container/60 backdrop-blur-md p-6 rounded-xl hover:-translate-y-2 transition-all duration-300 border border-white/5 hover:border-primary/20 shadow-lg${i === 2 ? " col-span-1 sm:col-span-2" : ""}`}>
+                <div className="mb-4">{cardIcons[i]}</div>
+                <h3 className="font-bold mb-2">{card.title}</h3>
+                <p className="text-sm text-on-surface-variant whitespace-pre-line">
+                  {card.text}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

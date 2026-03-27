@@ -1,9 +1,17 @@
 "use client";
 
 import { useI18n } from "@/context/i18n-context";
-import { Mail, Send } from "lucide-react";
+import { ContactItem } from "@/context/dictionaries";
+import { Mail, Phone, Send } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa";
 import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+
+const contactIcons = [
+  <Mail key="mail" className="w-5 h-5" />,
+  <Phone key="phone" className="w-5 h-5" />,
+  <FaLinkedinIn key="linkedin" className="w-5 h-5" />,
+];
 
 export function Contact() {
   const { t } = useI18n();
@@ -12,25 +20,19 @@ export function Contact() {
   const [feedback, setFeedback] = useState<{
     type: "success" | "error" | null;
     message: string;
-  }>({
-    type: null,
-    message: "",
-  });
+  }>({ type: null, message: "" });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: { preventDefault(): void; target: EventTarget }) => {
     e.preventDefault();
     setFeedback({ type: null, message: "" });
 
     const captchaValue = recaptchaRef.current?.getValue();
-
     if (!captchaValue) {
       setFeedback({ type: "error", message: t.contact.captchaError });
       return;
     }
 
     setIsSubmitting(true);
-
-    // Simulate API Call for demonstration logic, user will wire the backend up later
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setFeedback({ type: "success", message: t.contact.success });
@@ -44,68 +46,92 @@ export function Contact() {
   };
 
   return (
-    <section
-      id="contact"
-      className="py-24 bg-gray-900 border-t border-gray-800">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center mb-12">
-          <div className="p-3 bg-brand-purple/10 rounded-lg mb-4">
-            <Mail className="h-6 w-6 text-brand-purple" />
-          </div>
-          <h2 className="text-3xl font-bold tracking-tight text-white">
+    <section id="contact" className="py-24 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+      <div className="grid lg:grid-cols-2 gap-16">
+        {/* Left: info */}
+        <div>
+          <h2 className="text-4xl font-bold font-headline tracking-tight mb-6">
             {t.contact.title}
           </h2>
+          <p className="text-on-surface-variant text-lg mb-12 leading-relaxed">
+            {t.contact.description}
+          </p>
+
+          <div className="space-y-4">
+            {t.contact.items.map((item: ContactItem, i: number) => (
+              <a
+                key={i}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="flex items-center gap-5 p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/5 hover:bg-white/10 hover:border-primary/20 transition-all group shadow-lg">
+                <div className="w-11 h-11 flex items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-on-primary-fixed transition-colors shrink-0">
+                  {contactIcons[i]}
+                </div>
+                <div>
+                  <p className="text-xs font-label uppercase tracking-widest text-on-surface-variant">
+                    {item.label}
+                  </p>
+                  <p className="font-bold text-sm">{item.value}</p>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="bg-gray-950 border border-gray-800 rounded-2xl p-6 sm:p-10 shadow-xl">
+        {/* Right: form */}
+        <div className="bg-surface-container-low/60 backdrop-blur-xl p-8 md:p-10 rounded-2xl border border-white/10 shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label
-                  htmlFor="name"
-                  className="text-sm font-medium text-gray-300">
+                <label className="text-xs font-label uppercase tracking-widest text-on-surface-variant">
                   {t.contact.name}
                 </label>
                 <input
                   type="text"
-                  id="name"
                   required
-                  className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent transition-all"
                   placeholder="Guillermo Chinni"
+                  className="w-full bg-surface-container-lowest/50 border border-white/5 rounded-lg p-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-on-surface outline-none"
                 />
               </div>
               <div className="space-y-2">
-                <label
-                  htmlFor="email"
-                  className="text-sm font-medium text-gray-300">
+                <label className="text-xs font-label uppercase tracking-widest text-on-surface-variant">
                   {t.contact.email}
                 </label>
                 <input
                   type="email"
-                  id="email"
                   required
-                  className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent transition-all"
-                  placeholder="hola@ejemplo.com"
+                  placeholder="hello@example.com"
+                  className="w-full bg-surface-container-lowest/50 border border-white/5 rounded-lg p-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-on-surface outline-none"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="message"
-                className="text-sm font-medium text-gray-300">
-                {t.contact.message}
+              <label className="text-xs font-label uppercase tracking-widest text-on-surface-variant">
+                {t.contact.subject}
               </label>
-              <textarea
-                id="message"
+              <input
+                type="text"
                 required
-                rows={5}
-                className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent transition-all resize-none"
-                placeholder="..."
+                placeholder="Project Inquiry"
+                className="w-full bg-surface-container-lowest/50 border border-white/5 rounded-lg p-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-on-surface outline-none"
               />
             </div>
 
-            <div className="flex flex-col items-center gap-6 pt-4 border-t border-gray-800 font-sans">
+            <div className="space-y-2">
+              <label className="text-xs font-label uppercase tracking-widest text-on-surface-variant">
+                {t.contact.message}
+              </label>
+              <textarea
+                required
+                rows={4}
+                placeholder="How can I help you?"
+                className="w-full bg-surface-container-lowest/50 border border-white/5 rounded-lg p-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-on-surface outline-none resize-none"
+              />
+            </div>
+
+            <div className="flex flex-col items-center gap-4 pt-2 font-sans">
               <ReCAPTCHA
                 ref={recaptchaRef}
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
@@ -114,7 +140,11 @@ export function Contact() {
 
               {feedback.type && (
                 <div
-                  className={`text-sm w-full text-center p-3 rounded-lg border ${feedback.type === "success" ? "bg-green-500/10 border-green-500/30 text-green-400" : "bg-red-500/10 border-red-500/30 text-red-400"}`}>
+                  className={`text-sm w-full text-center p-3 rounded-lg border ${
+                    feedback.type === "success"
+                      ? "bg-green-500/10 border-green-500/30 text-green-400"
+                      : "bg-red-500/10 border-red-500/30 text-red-400"
+                  }`}>
                   {feedback.message}
                 </div>
               )}
@@ -122,11 +152,11 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg bg-brand-purple px-8 py-3.5 text-base font-semibold text-white hover:bg-brand-purple-hover focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed">
+                className="w-full py-4 hero-gradient text-on-primary-fixed font-bold rounded-lg transition-all active:scale-95 neon-glow shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
                     <svg
-                      className="animate-spin h-5 w-5 text-white"
+                      className="animate-spin h-5 w-5"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24">
@@ -136,17 +166,19 @@ export function Contact() {
                         cy="12"
                         r="10"
                         stroke="currentColor"
-                        strokeWidth="4"></circle>
+                        strokeWidth="4"
+                      />
                       <path
                         className="opacity-75"
                         fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      />
                     </svg>
                     {t.contact.submitting}
                   </span>
                 ) : (
                   <>
-                    <Send className="mr-2 h-5 w-5" aria-hidden="true" />
+                    <Send className="w-5 h-5" />
                     {t.contact.submit}
                   </>
                 )}

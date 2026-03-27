@@ -13,41 +13,69 @@ export type ProjectItem = {
   requestAccessSubject?: string;
 };
 
+export type AboutCard = {
+  title: string;
+  text: string;
+};
+
+export type ContactItem = {
+  label: string;
+  value: string;
+  href: string;
+};
+
 export const dictionaries = {
   es: {
     nav: {
       about: "Sobre mí",
-      tech: "Tecnologías",
+      tech: "Stack",
       projects: "Proyectos",
       contact: "Contacto",
+      downloadCv: "Descargar CV",
     },
     hero: {
-      title: "Construyendo ecosistemas digitales robustos y escalables.",
-      subtitle:
-        "Guillermo Chinni - Full-Stack Developer especializado en React, Next.js, Node.js y arquitecturas Cloud.",
+      hiIm: "Hola, soy",
+      description:
+        "Construyo soluciones web y móviles escalables centradas en la experiencia del usuario, convirtiendo problemas complejos en productos digitales elegantes.",
       ctaProjects: "Ver Proyectos",
+      ctaContact: "Contáctame",
       ctaCv: "Descargar CV",
       cvLink: "/cv/CV_Guillermo_Chinni_espanol.pdf",
     },
     about: {
       title: "Sobre mí",
-      text: "Soy Ingeniero Informático con sólida experiencia en el diseño y desarrollo de aplicaciones web y móviles. Me especializo en arquitecturas modernas (Monorepos, Serverless, integraciones LLM). Fuera del código, sirvo como Bombero Voluntario en la 18ª Compañía de Santiago; una vocación que ha forjado mi capacidad para tomar decisiones críticas, liderar equipos y mantener la claridad bajo escenarios de alta presión.",
-      workflow: {
-        title: "Metodología y Calidad de Código",
-        tags: [
-          "Arquitectura Escalable",
-          "Code Reviews",
-          "Integración Continua (CI/CD)",
-          "Metodologías Ágiles (Jira)",
-          "QA Testing",
-        ],
-      },
+      paragraphs: [
+        "Me especializo en navegar el ciclo de vida completo del producto, desde el concepto inicial y diseño UI/UX hasta la arquitectura de backend robusta y el despliegue.",
+        "Mi experiencia se centra en el stack MERN, con enfoque profundo en arquitecturas modernas como Monorepos, Serverless e integraciones con LLMs. Creo en escribir código limpio y mantenible que entregue experiencias de usuario excepcionales.",
+      ],
+      cards: [
+        {
+          title: "Educación",
+          text: "Ingeniería Informática, Duoc UC",
+        },
+        {
+          title: "Idiomas",
+          text: "Español (Nativo)\nInglés (B2)",
+        },
+        {
+          title: "Más allá del código",
+          text: "Bombero Voluntario en la 18ª Compañía, Cuerpo de Bomberos de Santiago. Dedicado al servicio comunitario y al trabajo en equipo bajo presión.",
+        },
+      ] as AboutCard[],
     },
     tech: {
       title: "Tech Stack",
+      categories: {
+        frontend: "Frontend",
+        backend: "Backend",
+        mobile: "Mobile",
+        dbAndDevops: "Bases de datos & DevOps",
+        aiAgents: "IA, Agentes & Herramientas Generativas",
+      },
     },
     projects: {
-      title: "Experiencia y Proyectos Destacados",
+      title: "Proyectos Destacados",
+      subtitle: "Trabajos seleccionados que muestran amplitud técnica y enfoque en diseño.",
       badges: {
         nda: "Código Privado (NDA)",
         team: "En Equipo",
@@ -63,7 +91,7 @@ export const dictionaries = {
           name: "Asistente Legal con IA",
           stack: ["React", "Next.js", "LLMs", "LangChain"],
           description:
-            "Construcción de un pipeline RAG con LangChain y bases de datos vectoriales para el sector legal.",
+            "Pipeline RAG con LangChain y bases de datos vectoriales para el sector legal.",
           images: Array.from(
             { length: 5 },
             (_, i) =>
@@ -79,7 +107,7 @@ export const dictionaries = {
           name: "Plataforma Family Office",
           stack: ["Next.js", "MongoDB", "Serverless"],
           description:
-            "Plataforma web Serverless desplegada en Vercel con bases de datos documentales y mapas interactivos globales.",
+            "Plataforma web Serverless en Vercel con bases de datos documentales y mapas interactivos globales.",
           images: Array.from(
             { length: 6 },
             (_, i) =>
@@ -96,7 +124,7 @@ export const dictionaries = {
           name: "Sistema CMMS (Mantenimiento)",
           stack: ["NestJS", "React", "Monorepo"],
           description:
-            "Sistema de gestión de mantenimiento en tiempo real con arquitectura Monorepo y Control de Acceso Basado en Roles.",
+            "Gestión de mantenimiento en tiempo real con arquitectura Monorepo y control de acceso basado en roles.",
           images: Array.from(
             { length: 6 },
             (_, i) =>
@@ -112,7 +140,7 @@ export const dictionaries = {
           name: "App Móvil Offline",
           stack: ["React Native", "Expo", "File System"],
           description:
-            "Solución móvil de alta disponibilidad con optimización de memoria mediante File System para entornos sin red.",
+            "App móvil de alta disponibilidad con optimización de memoria via File System para entornos sin red.",
           images: Array.from(
             { length: 7 },
             (_, i) =>
@@ -126,13 +154,32 @@ export const dictionaries = {
       ] as ProjectItem[],
     },
     footer: {
-      connectText: "¿Construimos algo increíble? Hablemos.",
       copyright: `© ${new Date().getFullYear()} Guillermo Chinni. Todos los derechos reservados.`,
     },
     contact: {
-      title: "Ponte en contacto",
+      title: "Conectemos",
+      description:
+        "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tu visión.",
+      items: [
+        {
+          label: "Email",
+          value: "guillechinni2001@gmail.com",
+          href: "mailto:guillechinni2001@gmail.com",
+        },
+        {
+          label: "Teléfono",
+          value: "+56 9 42499667",
+          href: "tel:+56942499667",
+        },
+        {
+          label: "LinkedIn",
+          value: "Guillermo Chinni",
+          href: "https://www.linkedin.com/in/guillermo-chinni-aylwin/",
+        },
+      ] as ContactItem[],
       name: "Nombre completo",
       email: "Correo electrónico",
+      subject: "Asunto",
       message: "Tu mensaje",
       submit: "Enviar mensaje",
       submitting: "Enviando...",
@@ -144,37 +191,54 @@ export const dictionaries = {
   en: {
     nav: {
       about: "About",
-      tech: "Tech Stack",
+      tech: "Stack",
       projects: "Projects",
       contact: "Contact",
+      downloadCv: "Download CV",
     },
     hero: {
-      title: "Building robust and scalable digital ecosystems.",
-      subtitle:
-        "Guillermo Chinni - Full-Stack Developer specialized in React, Next.js, Node.js, and Cloud architectures.",
+      hiIm: "Hi, I'm",
+      description:
+        "I build scalable web and mobile solutions focused on user experience, turning complex problems into elegant digital products.",
       ctaProjects: "View Projects",
+      ctaContact: "Contact Me",
       ctaCv: "Download CV",
       cvLink: "/cv/CV_Guillermo_Chinni_english.pdf",
     },
     about: {
       title: "About Me",
-      text: "I am a Software Engineer with solid experience in designing and developing web and mobile applications. I specialize in modern architectures (Monorepos, Serverless, LLM integrations). Beyond coding, I serve as a Volunteer Firefighter at the 18th Fire Company of Santiago; a calling that has forged my ability to make critical decisions, lead teams, and maintain clarity under high-pressure scenarios.",
-      workflow: {
-        title: "Methodology & Code Quality",
-        tags: [
-          "Scalable Architecture",
-          "Code Reviews",
-          "Continuous Integration (CI/CD)",
-          "Agile (Jira)",
-          "QA Testing",
-        ],
-      },
+      paragraphs: [
+        "I specialize in navigating the complete product lifecycle, from initial concept and UI/UX design to robust backend architecture and deployment.",
+        "My expertise centers around the MERN stack, with a deep focus on modern architectures like Monorepos, Serverless, and LLM integrations. I believe in writing clean, maintainable code that delivers exceptional user experiences.",
+      ],
+      cards: [
+        {
+          title: "Education",
+          text: "Computer Engineering, Duoc UC",
+        },
+        {
+          title: "Languages",
+          text: "Spanish (Native)\nEnglish (B2)",
+        },
+        {
+          title: "Beyond Code",
+          text: "Volunteer Firefighter at 18ª Compañía, Cuerpo de Bomberos de Santiago. Dedicated to community service and high-pressure teamwork.",
+        },
+      ] as AboutCard[],
     },
     tech: {
       title: "Tech Stack",
+      categories: {
+        frontend: "Frontend",
+        backend: "Backend",
+        mobile: "Mobile",
+        dbAndDevops: "Databases & DevOps",
+        aiAgents: "AI, Agents & Generative Tools",
+      },
     },
     projects: {
-      title: "Experience & Featured Projects",
+      title: "Featured Projects",
+      subtitle: "Selected works showcasing technical breadth and design focus.",
       badges: {
         nda: "Private Code (NDA)",
         team: "Team",
@@ -190,7 +254,7 @@ export const dictionaries = {
           name: "AI Legal Assistant",
           stack: ["React", "Next.js", "LLMs", "LangChain"],
           description:
-            "Built a RAG pipeline using LangChain and vector databases for the legal sector.",
+            "RAG pipeline with LangChain and vector databases for the legal sector.",
           images: Array.from(
             { length: 5 },
             (_, i) =>
@@ -206,7 +270,7 @@ export const dictionaries = {
           name: "Family Office Platform",
           stack: ["Next.js", "MongoDB", "Serverless"],
           description:
-            "Serverless web platform deployed on Vercel with document databases and global interactive maps.",
+            "Serverless web platform on Vercel with document databases and global interactive maps.",
           images: Array.from(
             { length: 6 },
             (_, i) =>
@@ -222,7 +286,7 @@ export const dictionaries = {
           name: "CMMS Platform (Maintenance)",
           stack: ["NestJS", "React", "Monorepo"],
           description:
-            "Real-time maintenance management system with Monorepo architecture and Role-Based Access Control.",
+            "Real-time maintenance management with Monorepo architecture and Role-Based Access Control.",
           images: Array.from(
             { length: 6 },
             (_, i) =>
@@ -238,7 +302,7 @@ export const dictionaries = {
           name: "Offline Mobile App",
           stack: ["React Native", "Expo", "File System"],
           description:
-            "High-availability mobile solution with memory optimization via File System for offline environments.",
+            "High-availability mobile app with File System memory optimization for offline environments.",
           images: Array.from(
             { length: 7 },
             (_, i) =>
@@ -252,17 +316,36 @@ export const dictionaries = {
       ] as ProjectItem[],
     },
     footer: {
-      connectText: "Let’s build something amazing together.",
       copyright: `© ${new Date().getFullYear()} Guillermo Chinni. All rights reserved.`,
     },
     contact: {
-      title: "Get in touch",
+      title: "Let's Connect",
+      description:
+        "I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.",
+      items: [
+        {
+          label: "Email",
+          value: "guillechinni2001@gmail.com",
+          href: "mailto:guillechinni2001@gmail.com",
+        },
+        {
+          label: "Phone",
+          value: "+56 9 42499667",
+          href: "tel:+56942499667",
+        },
+        {
+          label: "LinkedIn",
+          value: "Guillermo Chinni",
+          href: "https://www.linkedin.com/in/guillermo-chinni-aylwin/",
+        },
+      ] as ContactItem[],
       name: "Full Name",
       email: "Email Address",
+      subject: "Subject",
       message: "Your Message",
       submit: "Send Message",
       submitting: "Sending...",
-      success: "Message sent safely! I'll get back to you soon.",
+      success: "Message sent successfully! I'll get back to you soon.",
       error: "An error occurred while sending the message. Please try again.",
       captchaError: "Please complete the Captcha.",
     },

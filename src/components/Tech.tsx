@@ -1,90 +1,141 @@
 "use client";
 
 import { useI18n } from "@/context/i18n-context";
-import { Layers } from "lucide-react";
-import { FaReact, FaNodeJs } from "react-icons/fa";
 import {
+  SiReact,
   SiNextdotjs,
+  SiTailwindcss,
+  SiReactquery,
+  SiNodedotjs,
+  SiNestjs,
   SiTypescript,
+  SiOpenapiinitiative,
   SiExpo,
   SiMongodb,
-  SiNestjs,
-  SiTailwindcss,
+  SiPostgresql,
   SiVercel,
+  SiDocker,
+  SiGithubactions,
+  SiAnthropic,
+  SiGoogle,
+  SiGoogledataflow,
+  SiOpenai,
 } from "react-icons/si";
-import { VscAzure } from "react-icons/vsc";
+import { Layers, Cpu, Cloud } from "lucide-react";
+import type { IconType } from "react-icons";
+import type { LucideIcon } from "lucide-react";
 
-const technologies = [
-  "React",
-  "Next.js",
-  "Node.js",
-  "TypeScript",
-  "Expo",
-  "MongoDB",
-  "NestJS",
-  "Tailwind CSS",
-  "Vercel",
-  "Azure",
+type TechItem = {
+  label: string;
+  icon: IconType | LucideIcon;
+};
+
+type Category = {
+  key: "frontend" | "backend" | "mobile" | "dbAndDevops" | "aiAgents";
+  items: TechItem[];
+};
+
+const TOP_CATEGORIES: Category[] = [
+  {
+    key: "frontend",
+    items: [
+      { label: "React", icon: SiReact },
+      { label: "Next.js", icon: SiNextdotjs },
+      { label: "Tailwind CSS", icon: SiTailwindcss },
+      { label: "React Query", icon: SiReactquery },
+      { label: "Zustand", icon: Layers },
+    ],
+  },
+  {
+    key: "backend",
+    items: [
+      { label: "Node.js", icon: SiNodedotjs },
+      { label: "NestJS", icon: SiNestjs },
+      { label: "TypeScript", icon: SiTypescript },
+      { label: "REST APIs", icon: SiOpenapiinitiative },
+    ],
+  },
+  {
+    key: "mobile",
+    items: [
+      { label: "React Native", icon: SiReact },
+      { label: "Expo", icon: SiExpo },
+    ],
+  },
 ];
 
-const getTechIcon = (tech: string) => {
-  switch (tech) {
-    case "React":
-      return <FaReact className="h-6 w-6" />;
-    case "Next.js":
-      return <SiNextdotjs className="h-6 w-6" />;
-    case "Node.js":
-      return <FaNodeJs className="h-6 w-6" />;
-    case "TypeScript":
-      return <SiTypescript className="h-6 w-6" />;
-    case "Expo":
-      return <SiExpo className="h-6 w-6" />;
-    case "MongoDB":
-      return <SiMongodb className="h-6 w-6" />;
-    case "NestJS":
-      return <SiNestjs className="h-6 w-6" />;
-    case "Tailwind CSS":
-      return <SiTailwindcss className="h-6 w-6" />;
-    case "Vercel":
-      return <SiVercel className="h-6 w-6" />;
-    case "Azure":
-      return <VscAzure className="h-6 w-6" />;
-    default:
-      return <Layers className="h-6 w-6" />;
-  }
-};
+const BOTTOM_CATEGORIES: Category[] = [
+  {
+    key: "dbAndDevops",
+    items: [
+      { label: "MongoDB", icon: SiMongodb },
+      { label: "PostgreSQL", icon: SiPostgresql },
+      { label: "Azure", icon: Cloud },
+      { label: "Vercel", icon: SiVercel },
+      { label: "Docker", icon: SiDocker },
+      { label: "GitHub Actions / CI-CD", icon: SiGithubactions },
+    ],
+  },
+  {
+    key: "aiAgents",
+    items: [
+      { label: "Claude Code", icon: SiAnthropic },
+      { label: "Google Stitch & v0", icon: SiGoogle },
+      { label: "Google Flow", icon: SiGoogledataflow },
+      { label: "LLM APIs (OpenAI · Gemini)", icon: SiOpenai },
+      { label: "MCP (Model Context Protocol)", icon: Cpu },
+    ],
+  },
+];
+
+function TechChip({ label, icon: Icon }: TechItem) {
+  return (
+    <span className="flex items-center gap-1.5 px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 text-primary rounded-full text-xs font-label hover:bg-primary hover:text-on-primary-fixed transition-colors cursor-default">
+      <Icon className="w-3.5 h-3.5 shrink-0" />
+      {label}
+    </span>
+  );
+}
 
 export function Tech() {
   const { t } = useI18n();
 
   return (
-    <section
-      id="tech"
-      className="py-24 bg-gray-800/30 border-t border-gray-800">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-3 bg-brand-purple/10 rounded-full mb-4">
-            <Layers className="h-6 w-6 text-brand-purple" />
-          </div>
-          <h2 className="text-3xl font-bold tracking-tight text-white">
-            {t.tech.title}
-          </h2>
-        </div>
+    <section id="tech" className="py-24 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
+      <h2 className="text-4xl font-bold font-headline mb-16 tracking-tight text-center">
+        {t.tech.title}
+      </h2>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {technologies.map((tech) => (
-            <div
-              key={tech}
-              className="group flex items-center justify-center gap-3 p-4 bg-gray-900 border border-gray-800 rounded-xl hover:border-brand-purple/50 hover:bg-gray-800 transition-all duration-300">
-              <div className="flex-shrink-0 text-gray-400 group-hover:text-brand-purple transition-colors duration-300">
-                {getTechIcon(tech)}
-              </div>
-              <span className="text-sm font-semibold text-gray-300 group-hover:text-white transition-colors">
-                {tech}
-              </span>
+      {/* Top row: 3 categories */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        {TOP_CATEGORIES.map(({ key, items }) => (
+          <div key={key} className="flex flex-col items-center text-center space-y-4">
+            <h3 className="font-label text-xs uppercase tracking-widest text-primary font-bold">
+              {t.tech.categories[key]}
+            </h3>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {items.map((item) => (
+                <TechChip key={item.label} {...item} />
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom row: 2 categories centered */}
+      <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16">
+        {BOTTOM_CATEGORIES.map(({ key, items }) => (
+          <div key={key} className="flex flex-col items-center text-center space-y-4 md:max-w-xs">
+            <h3 className="font-label text-xs uppercase tracking-widest text-primary font-bold">
+              {t.tech.categories[key]}
+            </h3>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {items.map((item) => (
+                <TechChip key={item.label} {...item} />
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
